@@ -1,0 +1,12 @@
+sudo: required
+
+language: php
+
+services:
+  - docker
+
+before_install:
+- docker build -t hrcc/php-ci .
+
+script:
+- ./test/run.sh
