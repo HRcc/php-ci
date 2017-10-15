@@ -46,4 +46,11 @@ else
   fail "Composer is not available"
 fi
 
+# Check if Node.js is available
+if docker run $dockerImage node -v | grep -q 'v8'; then
+  pass "Node.js is available"
+else
+  fail "Node.js is not available"
+fi
+
 echo -e "\n\033[0;32mSUCCESS\033[0m"
