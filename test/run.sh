@@ -32,11 +32,11 @@ else
   fail "LANG is not set"
 fi
 
-# Check if PHP 7.* is available
-if docker run $dockerImage php -v | grep -q 'PHP 7'; then
-  pass "PHP 7.* is available"
+# Check if PHP 7.1 is available
+if docker run $dockerImage php -v | grep -q 'PHP 7.1'; then
+  pass "PHP 7.1 is available"
 else
-  fail "PHP 7.* is not available"
+  fail "PHP 7.1 is not available"
 fi
 
 # Check if composer is available
