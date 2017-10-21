@@ -1,7 +1,9 @@
-FROM ubuntu:16.04
+FROM phusion/baseimage:latest
 LABEL maintainer="https://github.com/hrcc"
 
 ENV DEBIAN_FRONTEND noninteractive
+
+CMD ["/sbin/my_init"]
 
 # Update & locale setup
 RUN apt-get update \
@@ -14,7 +16,6 @@ ENV LC_ALL en_US.UTF-8
 
 # INSTALL
 RUN apt-get update \
-    && apt-get upgrade -y \
     && apt-get install -y curl unzip git software-properties-common
 
 # PHP 7.1
