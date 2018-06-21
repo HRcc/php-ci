@@ -16,7 +16,7 @@ ENV LC_ALL en_US.UTF-8
 
 # INSTALL
 RUN apt-get update \
-    && apt-get install -y curl unzip git software-properties-common
+    && apt-get install -y curl wget unzip git software-properties-common
 
 # PHP 7.1
 RUN add-apt-repository -y ppa:ondrej/php && apt-get update \
