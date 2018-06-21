@@ -18,19 +18,24 @@ ENV LC_ALL en_US.UTF-8
 RUN apt-get update \
     && apt-get install -y curl wget unzip git software-properties-common
 
-# PHP 7.1
+# Dockerize v0.6.1
+RUN wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz \
+    && rm dockerize-linux-amd64-v0.6.1.tar.gz
+
+# PHP 7.2
 RUN add-apt-repository -y ppa:ondrej/php && apt-get update \
-    && apt-get install -y php7.1-fpm php7.1-cli php7.1-mcrypt php7.1-gd php7.1-mysql \
-       php7.1-pgsql php7.1-sqlite3 php7.1-imap php7.1-memcached php7.1-mbstring php7.1-xml \       
-       php7.1-json php7.1-curl php7.1-gd php7.1-gmp php7.1-mbstring php7.1-zip php-redis \
+    && apt-get install -y php7.2-fpm php7.2-cli php7.2-gd php7.2-mysql \
+       php7.2-pgsql php7.2-sqlite3 php7.2-imap php7.2-memcached php7.2-mbstring php7.2-xml \       
+       php7.2-json php7.2-curl php7.2-gd php7.2-gmp php7.2-mbstring php7.2-zip php-redis \
     && phpenmod mcrypt \
     && mkdir /run/php
 
 # Composer
 RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
 
-# Node.js v8
-RUN curl --silent --location https://deb.nodesource.com/setup_8.x | bash - \
+# Node.js v10
+RUN curl --silent --location https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get install nodejs -y
 
 # Cleanup for smaller image size

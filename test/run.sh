@@ -32,11 +32,18 @@ else
   fail "LANG is not set"
 fi
 
-# Check if PHP 7.1 is available
-if docker run $dockerImage php -v | grep -q 'PHP 7.1'; then
-  pass "PHP 7.1 is available"
+# Check if PHP 7.2 is available
+if docker run $dockerImage php -v | grep -q 'PHP 7.2'; then
+  pass "PHP 7.2 is available"
 else
-  fail "PHP 7.1 is not available"
+  fail "PHP 7.2 is not available"
+fi
+
+# Check if Dockerize is available
+if docker run $dockerImage dockerize -version | grep -q '0.6.1'; then
+  pass "Dockerize is available"
+else
+  fail "Dockerize is not available"
 fi
 
 # Check if composer is available
@@ -47,7 +54,7 @@ else
 fi
 
 # Check if Node.js is available
-if docker run $dockerImage node -v | grep -q 'v8'; then
+if docker run $dockerImage node -v | grep -q 'v10'; then
   pass "Node.js is available"
 else
   fail "Node.js is not available"
